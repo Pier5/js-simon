@@ -6,7 +6,6 @@ let arr = [];
 let arrUser = [];
 let correctNumbers = [];
 let totalNumbers = correctNumbers;
-let check = true;
 
 // Visualizzare in pagina 5 numeri casuali.
 
@@ -41,13 +40,10 @@ function guessNumbers() {
         let userNumbers = parseInt(prompt('Inserisci i numeri che hai letto prima, uno alla volta'));
         arrUser.push(userNumbers);
         
-    for (c = 0; c < arr.length; c++)
-        if (arr[c] == arrUser[j]) {
+    for (randomN = 0; randomN < arr.length; randomN++)
+        if (arr[randomN] == arrUser[j]) {
             correctNumbers.push(arrUser[j]);
-            check = true;
-        }
-        if (check == true) {
             outputTwo.innerHTML = `Hai indovinato i seguenti numeri: ${correctNumbers}`;
-        } 
+        }
     } 
 }
