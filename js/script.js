@@ -22,7 +22,7 @@ for (let i = 0; i < 5; i++) {
 // Da lì parte un timer di 30 secondi. (Cioè lasciate i numeri visibili per 
 // 30 secondi  allo scadere dei quali li nascondete).
 
-setTimeout(hideNumbers, 3000);
+setTimeout(hideNumbers, 30000);
 
 function hideNumbers() {
     output.innerHTML = '';
@@ -34,7 +34,7 @@ function hideNumbers() {
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e
 // quali dei numeri  da indovinare sono stati individuati.
 
-setTimeout(guessNumbers, 3100);
+setTimeout(guessNumbers, 31000);
 
 function guessNumbers() {
     let j = 0;
@@ -43,12 +43,11 @@ function guessNumbers() {
         arrUser.push(userNumbers);
         if (arr[j] == arrUser[j]) {
         correctNumbers.push(arrUser[j]);
-        totalNumbers = correctNumbers.length;
         }    
         j++;
-        h2.innerHTML = 'Risultato';
-        outputTwo.innerHTML = `Punteggio totale: ${totalNumbers} su 5`;
-        outputThree.innerHTML = `Hai indovinato i seguenti numeri: ${correctNumbers}`;
+        totalNumbers = correctNumbers.length;
     }
+    h2.innerHTML = 'Risultato';
+    outputTwo.innerHTML = `Punteggio totale: ${totalNumbers} su 5`;
+    outputThree.innerHTML = `Hai indovinato i seguenti numeri: ${correctNumbers}`;
 }
-
