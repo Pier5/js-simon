@@ -1,49 +1,51 @@
 const output = document.querySelector('.output');
 const outputTwo = document.querySelector('.output-two');
 const outputThree = document.querySelector('.output-three');
-let num;
+const h2 = document.querySelector('h2');
 let arr = [];
 let arrUser = [];
 let correctNumbers = [];
-let totalNumbers = correctNumbers;
+let num;
+let totalNumbers;
 
 // Visualizzare in pagina 5 numeri casuali.
 
 for (let i = 0; i < 5; i++) {
     let num = Math.floor(Math.random() * (100 - 1) + 1);
     while (arr.includes(num)) {
-    num = Math.floor(Math.random() * (100 - 1) + 1);
+        num = Math.floor(Math.random() * (100 - 1) + 1);
     } 
     arr.push(num);
-    output.innerHTML = `Leggi attentamente i numeri, dopo dovrai cercare di ricordarli: ${arr}`;
+    output.innerHTML = `Ecco i numeri che dovrai ricordare: ${arr}`;
 }
 
-// Da lì parte un timer di 30 secondi. (Cioè lasciate i numeri visibili per 30 secondi 
-// allo scadere dei quali li nascondete)
-// Dopo aver nascosto i numeri chiedete all'utente (con dei prompt) di inserirli in ordine, 
-// uno alla volta.
-// Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri 
-// da indovinare sono stati individuati.
+// Da lì parte un timer di 30 secondi. (Cioè lasciate i numeri visibili per 
+// 30 secondi  allo scadere dei quali li nascondete).
 
-
-
-setTimeout(hideNumbers, 3000);
+setTimeout(hideNumbers, 30000);
 
 function hideNumbers() {
     output.innerHTML = '';
+    h2.innerHTML = '';
 }
 
-setTimeout(guessNumbers, 5000);
+// Dopo aver nascosto i numeri chiedete all'utente (con dei prompt) di inserirli 
+// in ordine, uno alla volta.
+// Dopo che sono stati inseriti i 5 numeri, il software dice quanti e
+// quali dei numeri  da indovinare sono stati individuati.
+
+setTimeout(guessNumbers, 31000);
 
 function guessNumbers() {
     for (let j = 0; j < arr.length; j++) {
-        let userNumbers = parseInt(prompt('Inserisci i numeri che hai letto prima, uno alla volta'));
+        let userNumbers = parseInt(prompt('Inserisci i numeri nello stesso ordine in cui erano scritti, uno alla volta, altrimenti sarà contato come errore.'));
         arrUser.push(userNumbers);
-        
-    for (randomN = 0; randomN < arr.length; randomN++)
-        if (arr[randomN] == arrUser[j]) {
+        if (arr[j] == arrUser[j]) {
             correctNumbers.push(arrUser[j]);
-            outputTwo.innerHTML = `Hai indovinato i seguenti numeri: ${correctNumbers}`;
-        }
-    } 
+        }   
+        h2.innerHTML = 'Risultato';
+        outputTwo.innerHTML = `Punteggio totale: ${totalNumbers} su 5`;
+        outputThree.innerHTML = `Hai indovinato i seguenti numeri: ${correctNumbers}`;
+        totalNumbers = correctNumbers.length;
+    }
 }
